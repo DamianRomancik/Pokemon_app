@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title color = "primary">
+      Pokemon
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+      <ion-item button *ngFor="let item of pokemondetail " [routerLink]="[item.name]">
+
+        
+        <ion-img slot="start" src="{{item.sprites.front_default}}" alt="Pokemon"></ion-img>
+        <ion-label class="ion-text-capitalize" color="danger">{{item.name}}</ion-label>
+        
+        <ion-badge slot="end"> Order: {{item.order}} </ion-badge>
+        
+      </ion-item>
+      <ion-item>
+        <ion-label button> KONEC </ion-label> 
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content 
+      loadingSpinner="bubbles" 
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

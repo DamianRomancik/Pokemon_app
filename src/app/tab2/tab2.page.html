@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>
+      Tab 2
+    </ion-title>
+    <ion-button slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="pokemondetail">
+    <ion-card>
+      <ion-slides pager="true" [options]="slide0pts">
+        <ion-slide>
+          <ion-img style="width: 300px; height: 300px;" src="{{pokemondetail.sprites.front_default}}"></ion-img>
+        </ion-slide>
+        <ion-slide>
+          <ion-img style="width: 300px; height: 300px;" src="{{pokemondetail.sprites.back_default}}"></ion-img>
+        </ion-slide>
+        <ion-slide>
+          <ion-img style="width: 300px; height: 300px;" src="{{pokemondetail.sprites.front_shiny}}"></ion-img>
+        </ion-slide>
+        <ion-slide>
+          <ion-img style="width: 300px; height: 300px;" src="{{pokemondetail.sprites.back_shiny}}"></ion-img>
+        </ion-slide>
+      </ion-slides>
+      <ion-card-header>
+        <ion-card-title class="ion-text-capitalize">#{{pokemondetail.id}} {{pokemondetail.name}}
+          <ion-chip color="danger" class="ion-text-capitalize" *ngFor="let t of pokemondetail.types">{{t.type.name}}
+          </ion-chip>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Weight : {{pokemondetail.weight*0.45 }} KG
+      </ion-card-content>
+      <ion-list>
+        <ion-item>
+         <b slot="start"> Abilities : </b> 
+          <span slot="end" *ngFor="let a of pokemondetail.abilities;let isLast= last" class="ion-text-capitalize">
+             {{a.ability.name}}{{ !isLast ? '  ' : ''}}
+          </span> 
+        </ion-item>
+      <ion-item class="ion-text-capitalize" *ngFor="let s of pokemondetail.stats">
+        <b slot="start" color="danger">{{s.stat.name}}</b> <p slot="end">{{s.base_stat}} </p>
+      </ion-item>
+      </ion-list>
+
+
+    </ion-card>
+  </div>
+
+
+
+</ion-content>
